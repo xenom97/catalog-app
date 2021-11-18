@@ -9,3 +9,9 @@ export default defineComponent({
   name: 'HomePage',
 });
 </script>
+
+<style lang="scss" scoped>
+h1 {
+  color: $primary-color;
+}
+</style>

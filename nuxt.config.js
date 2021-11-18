@@ -21,7 +21,11 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/styles/main.css'],
+
+  styleResources: {
+    scss: ['~/assets/styles/variables.scss'],
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -37,6 +41,8 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://composition-api.nuxtjs.org/
     '@nuxtjs/composition-api/module',
+    // npmjs.com/package/@nuxtjs/style-resources
+    '@nuxtjs/style-resources',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
