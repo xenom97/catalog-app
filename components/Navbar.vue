@@ -22,6 +22,7 @@ export default defineComponent({
   background: $primary-color;
   box-shadow: $default-shadow;
   padding: 1em 0;
+  transition: 0.3s;
 
   &__content {
     max-width: $breakpoint-lg;
@@ -33,6 +34,12 @@ export default defineComponent({
     color: $light-orange-color;
     font-weight: bold;
     font-size: 24px;
+  }
+
+  $max-width: $breakpoint-lg + 24;
+
+  @media screen and (max-width: $max-width) {
+    padding: 1em;
   }
 }
 </style>

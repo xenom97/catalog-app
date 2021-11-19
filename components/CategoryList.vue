@@ -67,6 +67,7 @@ export default defineComponent({
 .sidebar {
   position: fixed;
   width: 280px;
+  transition: 0.3s;
 
   &__title {
     font-weight: bold;
@@ -79,13 +80,18 @@ export default defineComponent({
     .reset {
       color: $secondary-color;
       padding: 0.25em 0;
-      transition: 0.3s;
 
       &:hover {
         text-decoration: underline;
         cursor: pointer;
       }
     }
+  }
+
+  $max-width: $breakpoint-lg + 24;
+
+  @media screen and (max-width: $max-width) {
+    padding: 0 1em;
   }
 }
 
