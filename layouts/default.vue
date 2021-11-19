@@ -25,5 +25,12 @@ export default defineComponent({
   width: 100%;
   max-width: $container-max-width;
   margin: 0 auto;
+  margin-top: 32px;
+}
+
+main {
+  flex: 1;
+  max-height: 100vh;
+  overflow: auto;
 }
 </style>

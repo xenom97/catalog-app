@@ -1,10 +1,5 @@
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  ref,
-  useContext,
-} from '@nuxtjs/composition-api';
+import { computed, defineComponent, useContext } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   name: 'CategoryList',
@@ -12,27 +7,20 @@ export default defineComponent({
   setup() {
     const { $accessor } = useContext();
 
-    const isLoading = ref<boolean>(true);
+    const isLoading = computed<boolean>(() => $accessor.category.isLoading);
     const categories = computed<string[]>(() => $accessor.category.categories);
     const selectedCategory = computed<string>(
       () => $accessor.category.selectedCategory
     );
-
-    async function fetchCategories() {
-      await $accessor.category.getCategories();
-      isLoading.value = false;
-    }
-
-    fetchCategories();
 
     function setCategory(category: string) {
       $accessor.category.SET_SELECTED_CATEGORY(category);
     }
 
     return {
+      isLoading,
       categories,
       selectedCategory,
-      isLoading,
       setCategory,
     };
   },
@@ -124,8 +112,7 @@ export default defineComponent({
     }
 
     &:hover {
-      box-shadow: 0 2px 10px 0 rgb(20 20 20 / 10%),
-        0 2px 10px 0 rgb(20 20 20 / 10%);
+      box-shadow: $default-shadow;
       padding: 0.5em 1em;
 
       &:not(.category__list--active) {

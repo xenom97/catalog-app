@@ -1,34 +1,35 @@
 import { mutationTree, actionTree } from 'typed-vuex';
-import { getCategories } from '~/api/product.api';
+import { getProducts } from '~/api/product.api';
+import { IProduct } from '~/entities/product.entity';
 
 export const state = () => ({
   isLoading: false as boolean,
-  categories: [] as string[],
-  selectedCategory: '' as string,
+  products: [] as IProduct[],
+  selectedProduct: '' as string,
 });
 
 export const mutations = mutationTree(state, {
   SET_LOADING(state, loading: boolean) {
     state.isLoading = loading;
   },
-  SET_CATEGORIES(state, categories: string[]) {
-    state.categories = categories;
+  SET_PRODUCTS(state, products: IProduct[]) {
+    state.products = products;
   },
   SET_SELECTED_CATEGORY(state, category: string) {
-    state.selectedCategory = category;
+    state.selectedProduct = category;
   },
 });
 
 export const actions = actionTree(
   { state, mutations },
   {
-    async getCategories({ commit }): Promise<void> {
+    async getProducts({ commit }): Promise<void> {
       commit('SET_LOADING', true);
 
-      const data = await getCategories(this.$axios);
+      const data = await getProducts(this.$axios);
 
       if (data) {
-        commit('SET_CATEGORIES', data);
+        commit('SET_PRODUCTS', data);
       }
 
       commit('SET_LOADING', false);
