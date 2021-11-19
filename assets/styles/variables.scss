@@ -5,8 +5,10 @@ $dark-color: #222326;
 $light-orange-color: #F9F4F3;
 $light-blue-color: #F1F6FA;
 
-// Widths
-$container-max-width: 1280px;
+// Breakpoints
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1280px;
 
 // Shadows
 $default-shadow: 0 2px 10px 0 rgb(20 20 20 / 10%), 0 2px 10px 0 rgb(20 20 20 / 10%);

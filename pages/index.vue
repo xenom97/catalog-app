@@ -71,7 +71,7 @@ export default defineComponent({
 .container {
   display: flex;
   width: 100%;
-  max-width: $container-max-width;
+  max-width: $breakpoint-lg;
   margin: 16px auto;
 }
 

@@ -24,7 +24,7 @@ export default defineComponent({
   padding: 1em 0;
 
   &__content {
-    max-width: $container-max-width;
+    max-width: $breakpoint-lg;
     margin: 0 auto;
   }
 
