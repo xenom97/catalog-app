@@ -81,7 +81,6 @@ export default defineComponent({
   grid-row-gap: 1em;
   grid-column-gap: 1em;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  padding: 1em;
   margin-left: 280px;
 }
 </style>
