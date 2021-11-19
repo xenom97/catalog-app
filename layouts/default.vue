@@ -30,7 +30,5 @@ export default defineComponent({
 
 main {
   flex: 1;
-  max-height: 100vh;
-  overflow: auto;
 }
 </style>

@@ -1,20 +1,21 @@
 import { mutationTree, actionTree } from 'typed-vuex';
 import { getCategories } from '~/api/product.api';
+import { ProductCategory } from '~/entities/product.entity';
 
 export const state = () => ({
   isLoading: false as boolean,
-  categories: [] as string[],
-  selectedCategory: '' as string,
+  categories: [] as ProductCategory[],
+  selectedCategory: '' as ProductCategory,
 });
 
 export const mutations = mutationTree(state, {
   SET_LOADING(state, loading: boolean) {
     state.isLoading = loading;
   },
-  SET_CATEGORIES(state, categories: string[]) {
+  SET_CATEGORIES(state, categories: ProductCategory[]) {
     state.categories = categories;
   },
-  SET_SELECTED_CATEGORY(state, category: string) {
+  SET_SELECTED_CATEGORY(state, category: ProductCategory) {
     state.selectedCategory = category;
   },
 });

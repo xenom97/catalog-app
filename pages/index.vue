@@ -20,7 +20,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useContext } from '@nuxtjs/composition-api';
+import {
+  computed,
+  defineComponent,
+  useContext,
+  watch,
+} from '@nuxtjs/composition-api';
 
 export default defineComponent({
   name: 'HomePage',
@@ -29,6 +34,13 @@ export default defineComponent({
     const { $accessor } = useContext();
 
     const products = computed(() => $accessor.product.products);
+    const selectedCategory = computed(
+      () => $accessor.category.selectedCategory
+    );
+
+    watch(selectedCategory, (_category) => {
+      $accessor.product.getProducts(_category);
+    });
 
     // Initial Fetching
     Promise.all([

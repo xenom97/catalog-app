@@ -9,9 +9,16 @@ export function getCategories(
   return $axios.$get(`${BASE_URL}/categories`);
 }
 
-export function getProducts(
-  $axios: NuxtAxiosInstance,
-  limit: number = 12
-): Promise<IProduct[]> {
-  return $axios.$get(`${BASE_URL}/?limit=${limit}`);
+export function getProducts($axios: NuxtAxiosInstance): Promise<IProduct[]> {
+  return $axios.$get(BASE_URL);
+}
+
+export function getProductsInCategory({
+  $axios,
+  category,
+}: {
+  $axios: NuxtAxiosInstance;
+  category: ProductCategory;
+}): Promise<IProduct[]> {
+  return $axios.$get(`${BASE_URL}/category/${category}`);
 }

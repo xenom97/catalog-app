@@ -1,5 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, useContext } from '@nuxtjs/composition-api';
+import { ProductCategory } from '~/entities/product.entity';
 
 export default defineComponent({
   name: 'CategoryList',
@@ -8,12 +9,14 @@ export default defineComponent({
     const { $accessor } = useContext();
 
     const isLoading = computed<boolean>(() => $accessor.category.isLoading);
-    const categories = computed<string[]>(() => $accessor.category.categories);
-    const selectedCategory = computed<string>(
+    const categories = computed<ProductCategory[]>(
+      () => $accessor.category.categories
+    );
+    const selectedCategory = computed<ProductCategory>(
       () => $accessor.category.selectedCategory
     );
 
-    function setCategory(category: string) {
+    function setCategory(category: ProductCategory) {
       $accessor.category.SET_SELECTED_CATEGORY(category);
     }
 
