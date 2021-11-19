@@ -1,13 +1,3 @@
-<template>
-  <div class="container">
-    <ProductCard
-      v-for="(product, idx) in products"
-      :key="idx"
-      :product="product"
-    />
-  </div>
-</template>
-
 <script lang="ts">
 import {
   computed,
@@ -16,17 +6,20 @@ import {
   watch,
 } from '@nuxtjs/composition-api';
 import ProductCard from '~/components/ProductCard.vue';
+import ProductCardLoading from '~/components/ProductCardLoading.vue';
 
 export default defineComponent({
   name: 'HomePage',
 
   components: {
     ProductCard,
+    ProductCardLoading,
   },
 
   setup() {
     const { $accessor } = useContext();
 
+    const isLoading = computed<boolean>(() => $accessor.product.isLoading);
     const products = computed(() => $accessor.product.products);
     const selectedCategory = computed(
       () => $accessor.category.selectedCategory
@@ -43,11 +36,28 @@ export default defineComponent({
     ]);
 
     return {
+      isLoading,
       products,
     };
   },
 });
 </script>
+
+<template>
+  <div class="container">
+    <template v-if="isLoading">
+      <ProductCardLoading v-for="card in 8" :key="card" />
+    </template>
+
+    <template v-else>
+      <ProductCard
+        v-for="(product, idx) in products"
+        :key="idx"
+        :product="product"
+      />
+    </template>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .container {

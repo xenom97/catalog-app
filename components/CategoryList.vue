@@ -97,6 +97,7 @@ export default defineComponent({
     height: 28px;
     border-radius: 8px;
     margin-top: 12px;
+    border: 2px solid #ebebeb;
   }
 }
 
