@@ -32,7 +32,7 @@ export default defineComponent({
 
 <template>
   <aside class="sidebar">
-    <h2 class="sidebar__title">Categories</h2>
+    <h3 class="sidebar__title">Categories</h3>
 
     <div v-if="isLoading" class="skeleton__container">
       <div v-for="bar in 4" :key="bar" class="skeleton__bar skeleton"></div>
@@ -65,10 +65,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .sidebar {
+  position: fixed;
   width: 280px;
 
   &__title {
     font-weight: bold;
+    text-transform: uppercase;
   }
 
   &__footer {
@@ -106,13 +108,13 @@ export default defineComponent({
 
   &__list {
     text-transform: capitalize;
-    margin-top: 0.75em;
+    margin-top: 0.5em;
     padding: 0.5em 0;
     transition: 0.3s;
     border-radius: 1em;
 
     &:first-child {
-      margin-top: 1.5em;
+      margin-top: 1em;
     }
 
     &:hover {
