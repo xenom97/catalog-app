@@ -21,7 +21,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/styles/main.css'],
+  css: ['~/assets/styles/main.scss'],
 
   styleResources: {
     scss: ['~/assets/styles/variables.scss'],
@@ -43,6 +43,8 @@ export default {
     '@nuxtjs/composition-api/module',
     // npmjs.com/package/@nuxtjs/style-resources
     '@nuxtjs/style-resources',
+    // https://typed-vuex.roe.dev
+    'nuxt-typed-vuex',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
