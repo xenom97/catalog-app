@@ -21,7 +21,7 @@ export default defineComponent({
   &__container {
     overflow: auto;
     border-radius: 0.75em;
-    min-width: 200px;
+    min-width: 150px;
     width: 100%;
     height: 280px;
     background: white;

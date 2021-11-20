@@ -20,18 +20,21 @@ export default defineComponent({
       $accessor.category.SET_SELECTED_CATEGORY(category);
     }
 
+    const isShowSidebar = computed(() => $accessor.core.showMenu);
+
     return {
       isLoading,
       categories,
       selectedCategory,
       setCategory,
+      isShowSidebar,
     };
   },
 });
 </script>
 
 <template>
-  <aside class="sidebar">
+  <aside :class="['sidebar', { 'sidebar--show': isShowSidebar }]">
     <h3 class="sidebar__title">Categories</h3>
 
     <div v-if="isLoading" class="skeleton__container">
@@ -57,8 +60,9 @@ export default defineComponent({
         v-if="selectedCategory !== ''"
         class="reset"
         @click="setCategory('')"
-        >Reset Filter</span
       >
+        Reset Filter
+      </span>
     </div>
   </aside>
 </template>
@@ -88,10 +92,21 @@ export default defineComponent({
     }
   }
 
-  $max-width: $breakpoint-lg + 24;
-
-  @media screen and (max-width: $max-width) {
+  @media screen and (max-width: $breakpoint-lg) {
     padding: 0 1em;
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    left: 0;
+    background: #f5f5f5;
+    height: 100%;
+    margin-top: -1em;
+    padding-top: 1em;
+    box-shadow: $default-shadow;
+
+    &:not(.sidebar--show) {
+      left: -500px;
+    }
   }
 }
 

@@ -2,6 +2,9 @@
 import {
   computed,
   defineComponent,
+  onMounted,
+  onUnmounted,
+  ref,
   useContext,
   watch,
 } from '@nuxtjs/composition-api';
@@ -33,15 +36,40 @@ export default defineComponent({
       $accessor.product.getProducts(_category);
     });
 
+    const windowWidth = ref<number>(0);
+
+    const isShowOverlay = computed(
+      () => $accessor.core.showMenu && windowWidth.value < 768
+    );
+
+    function closeMenu() {
+      $accessor.core.SET_SHOW_MENU(false);
+    }
+
+    function onResize(e) {
+      windowWidth.value = e.target.innerWidth;
+    }
+
     // Initial Fetching
     Promise.all([
       $accessor.category.getCategories(),
       $accessor.product.getProducts(),
     ]);
 
+    onMounted(() => {
+      windowWidth.value = window.innerWidth;
+      window.addEventListener('resize', onResize);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', onResize);
+    });
+
     return {
       isLoading,
       products,
+      isShowOverlay,
+      closeMenu,
     };
   },
 });
@@ -49,6 +77,8 @@ export default defineComponent({
 
 <template>
   <div class="container">
+    <div v-if="isShowOverlay" class="container__overlay" @click="closeMenu" />
+
     <CategoryList />
 
     <div class="product-container">
@@ -73,6 +103,15 @@ export default defineComponent({
   width: 100%;
   max-width: $breakpoint-lg;
   margin: 16px auto;
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+  }
 }
 
 .product-container {
@@ -82,5 +121,13 @@ export default defineComponent({
   grid-column-gap: 1em;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   margin-left: 280px;
+  transition: 0.3s;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+
+  @media screen and (max-width: $breakpoint-sm) {
+    margin-left: 0;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }
 </style>
