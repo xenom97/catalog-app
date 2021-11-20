@@ -18,6 +18,7 @@ export default defineComponent({
 
     function setCategory(category: ProductCategory) {
       $accessor.category.SET_SELECTED_CATEGORY(category);
+      $accessor.core.SET_SHOW_MENU(false);
     }
 
     const isShowSidebar = computed(() => $accessor.core.showMenu);
