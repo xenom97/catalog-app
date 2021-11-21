@@ -2,12 +2,10 @@
 import {
   computed,
   defineComponent,
-  onMounted,
-  onUnmounted,
-  ref,
   useContext,
   watch,
 } from '@nuxtjs/composition-api';
+import { useResizeObserver } from '~/composable/useResizeObserver';
 
 // Components
 import ProductCard from '~/components/ProductCard.vue';
@@ -40,7 +38,7 @@ export default defineComponent({
       redirect(`/product/${id}`);
     }
 
-    const windowWidth = ref<number>(0);
+    const { windowWidth } = useResizeObserver();
 
     const isShowOverlay = computed(
       () => $accessor.core.showMenu && windowWidth.value < 768
@@ -50,24 +48,11 @@ export default defineComponent({
       $accessor.core.SET_SHOW_MENU(false);
     }
 
-    function onResize(e) {
-      windowWidth.value = e.target.innerWidth;
-    }
-
     // Initial Fetching
     Promise.all([
       $accessor.category.getCategories(),
       $accessor.product.getProducts(selectedCategory.value),
     ]);
-
-    onMounted(() => {
-      windowWidth.value = window.innerWidth;
-      window.addEventListener('resize', onResize);
-    });
-
-    onUnmounted(() => {
-      window.removeEventListener('resize', onResize);
-    });
 
     return {
       isLoading,
