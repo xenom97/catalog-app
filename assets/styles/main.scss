@@ -18,6 +18,19 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
+hr {
+  border: 1px solid #d6d6d6;
+  margin: 1em 0;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  max-width: $breakpoint-lg;
+  margin: 0 auto;
+  padding: 1em 0;
+}
+
 // Loading animation
 .skeleton {
   animation : shimmer 2s infinite linear;

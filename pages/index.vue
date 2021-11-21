@@ -24,7 +24,7 @@ export default defineComponent({
   },
 
   setup() {
-    const { $accessor } = useContext();
+    const { $accessor, redirect } = useContext();
 
     const isLoading = computed<boolean>(() => $accessor.product.isLoading);
     const products = computed(() => $accessor.product.products);
@@ -35,6 +35,10 @@ export default defineComponent({
     watch(selectedCategory, (_category) => {
       $accessor.product.getProducts(_category);
     });
+
+    function goToProductDetail(id: number) {
+      redirect(`/product/${id}`);
+    }
 
     const windowWidth = ref<number>(0);
 
@@ -53,7 +57,7 @@ export default defineComponent({
     // Initial Fetching
     Promise.all([
       $accessor.category.getCategories(),
-      $accessor.product.getProducts(),
+      $accessor.product.getProducts(selectedCategory.value),
     ]);
 
     onMounted(() => {
@@ -68,6 +72,8 @@ export default defineComponent({
     return {
       isLoading,
       products,
+      goToProductDetail,
+
       isShowOverlay,
       closeMenu,
     };
@@ -91,6 +97,7 @@ export default defineComponent({
           v-for="(product, idx) in products"
           :key="idx"
           :product="product"
+          @click="goToProductDetail(product.id)"
         />
       </template>
     </div>
@@ -99,11 +106,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .container {
-  display: flex;
-  width: 100%;
-  max-width: $breakpoint-lg;
-  margin: 16px auto;
-
   &__overlay {
     position: absolute;
     top: 0;

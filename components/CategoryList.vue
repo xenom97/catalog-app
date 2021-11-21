@@ -36,25 +36,34 @@ export default defineComponent({
 
 <template>
   <aside :class="['sidebar', { 'sidebar--show': isShowSidebar }]">
-    <h3 class="sidebar__title">Categories</h3>
-
     <div v-if="isLoading" class="skeleton__container">
-      <div v-for="bar in 4" :key="bar" class="skeleton__bar skeleton"></div>
+      <div
+        v-for="bar in 5"
+        :key="bar"
+        class="skeleton__bar skeleton"
+        :style="{
+          marginBottom: bar === 1 ? '24px' : 0,
+        }"
+      />
     </div>
 
-    <ul v-else class="category">
-      <li
-        v-for="(category, idx) in categories"
-        :key="idx"
-        class="category__list"
-        :class="{
-          'category__list--active': selectedCategory === category,
-        }"
-        @click="setCategory(category)"
-      >
-        {{ category }}
-      </li>
-    </ul>
+    <template v-else>
+      <h3 class="sidebar__title">Categories</h3>
+
+      <ul class="category">
+        <li
+          v-for="(category, idx) in categories"
+          :key="idx"
+          class="category__list"
+          :class="{
+            'category__list--active': selectedCategory === category,
+          }"
+          @click="setCategory(category)"
+        >
+          {{ category }}
+        </li>
+      </ul>
+    </template>
 
     <div class="sidebar__footer">
       <span

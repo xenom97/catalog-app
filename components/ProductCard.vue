@@ -15,7 +15,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="card">
+  <div class="card" @click="$emit('click')">
     <div class="card__image">
       <span v-if="!product.image"> Not Available </span>
       <img :src="product.image" :alt="product.title" />

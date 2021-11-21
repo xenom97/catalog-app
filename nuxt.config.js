@@ -28,7 +28,11 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/directives/click-outside.directive.ts'],
+  plugins: [
+    '~/directives/click-outside.directive.ts',
+    '~/plugins/star-rating.client.ts',
+    '~/plugins/swiper.client.ts',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -58,4 +62,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  publicRuntimeConfig: {
+    unsplashAccessKey: process.env.UNSPLASH_ACCESS_KEY,
+  },
 };

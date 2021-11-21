@@ -13,6 +13,13 @@ export function getProducts($axios: NuxtAxiosInstance): Promise<IProduct[]> {
   return $axios.$get(BASE_URL);
 }
 
+export function getProductById(
+  $axios: NuxtAxiosInstance,
+  id: string
+): Promise<IProduct> {
+  return $axios.$get(`${BASE_URL}/${id}`);
+}
+
 export function getProductsInCategory({
   $axios,
   category,
