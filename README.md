@@ -6,8 +6,8 @@
 - SCSS
 
 ## Thanks for the API below for providing good sample data
-- [Fake Store API]('https://fakestoreapi.com')
-- [Unsplash  API]('https://unsplash.com/developers')
+- [Fake Store API](https://fakestoreapi.com)
+- [Unsplash  API](https://unsplash.com/developers)
 
 ## Build Setup
 
