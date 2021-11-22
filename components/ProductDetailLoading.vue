@@ -23,7 +23,8 @@ export default defineComponent({
 .image-loading {
   &__container {
     height: 320px;
-    width: 380px;
+    max-width: 380px;
+    width: 100%;
     border: 2px solid #ebebeb;
     display: flex;
     flex-direction: column;
@@ -53,6 +54,22 @@ export default defineComponent({
 
   &__item {
     height: 20%;
+  }
+}
+
+@media screen and (max-width: $breakpoint-sm) {
+  section {
+    flex-direction: column;
+  }
+
+  .image-loading__container {
+    max-width: none;
+  }
+
+  .detail-loading__container {
+    flex: none;
+    padding: 0;
+    margin-top: 2em;
   }
 }
 </style>
