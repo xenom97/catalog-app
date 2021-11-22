@@ -22,7 +22,7 @@ export default defineComponent({
       }
     }
 
-    return { isShowMenu, action };
+    return { isMobileScreen, isShowMenu, action };
   },
 });
 </script>
@@ -52,7 +52,11 @@ export default defineComponent({
         </svg>
 
         <span class="navbar__title">
-          {{ $route.fullPath === '/' ? 'Product Catalog' : 'Back' }}
+          {{
+            isMobileScreen && $route.fullPath !== '/'
+              ? 'Back'
+              : 'Product Catalog'
+          }}
         </span>
       </div>
     </div>

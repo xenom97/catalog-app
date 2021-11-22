@@ -102,7 +102,7 @@ export default defineComponent({
   height: 320px;
   width: 380px;
   background: #212121;
-  border: 1px solid #eee;
+  border: 1px solid #efefef;
 }
 .swiper {
   &.gallery-top {
