@@ -182,6 +182,17 @@ section {
     &-review {
       margin-left: 1em;
     }
+
+    @media screen and (max-width: $breakpoint-md) {
+      span {
+        font-size: 14px;
+
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
   }
 
   &__price {
