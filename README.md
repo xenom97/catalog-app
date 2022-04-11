@@ -9,6 +9,9 @@
 - [Fake Store API](https://fakestoreapi.com)
 - [Unsplash  API](https://unsplash.com/developers)
 
+## Demo
+https://catalog-product-app.herokuapp.com/
+
 ## Build Setup
 
 ```bash
